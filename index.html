@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avaliação dos Terapeutas — Gala Tríade 2026 · Responsáveis</title>
+<style>
+  :root{--azul:#2F5496;--amarelo:#FFF2CC;--verde:#2E7D32;--cinza:#f4f5f7;--borda:#d8d8d8;}
+  *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;}
+  body{background:var(--cinza);padding:14px;max-width:680px;margin:0 auto;}
+  .card{background:#fff;border-radius:12px;padding:18px 14px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:12px;}
+  h1{font-size:1.1rem;color:var(--azul);}
+  .sub{font-size:.8rem;color:#555;margin-top:4px;}
+  .aviso{background:var(--amarelo);border:1px solid #e6d9a8;border-radius:8px;padding:8px 10px;font-size:.75rem;color:#6b5d1f;margin-top:8px;}
+  .bloco{border:1px solid var(--borda);border-radius:10px;margin-top:14px;overflow:hidden;}
+  .bloco-h{background:var(--azul);color:#fff;padding:8px 12px;font-size:.9rem;font-weight:bold;}
+  .bloco-h small{font-weight:normal;opacity:.85;}
+  .crit{padding:10px 12px;border-bottom:1px solid #eee;}
+  .crit:last-child{border-bottom:none;}
+  .nome{font-size:.85rem;font-weight:bold;}
+  .desc{font-size:.72rem;color:#666;margin:2px 0 6px;}
+  .notas{display:flex;gap:5px;}
+  .notas label{flex:1;cursor:pointer;}
+  .notas input{display:none;}
+  .notas span{display:block;text-align:center;padding:7px 0;border:1px solid #bbb;border-radius:7px;background:#fff;font-size:.85rem;}
+  .notas input:checked+span{background:var(--azul);color:#fff;border-color:var(--azul);}
+  .notas .na span{background:#eee;font-size:.7rem;}
+  .notas .na input:checked+span{background:#555;border-color:#555;}
+  label.lbl{display:block;font-size:.85rem;font-weight:bold;margin:14px 0 6px;}
+  input[type=text],textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem;background:var(--amarelo);}
+  textarea{resize:vertical;}
+  .obs{margin:8px 12px 12px;}
+  .obs label{font-size:.75rem;font-weight:bold;color:#444;}
+  .obs textarea{font-size:.85rem;}
+  button{width:100%;margin-top:16px;padding:14px;background:var(--azul);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:bold;cursor:pointer;}
+  button:disabled{background:#9bb0d4;}
+  .erro{color:#c00;font-size:.8rem;margin-top:10px;display:none;}
+  #ok{text-align:center;padding:24px 10px;display:none;}
+  #ok .tick{font-size:3rem;color:var(--verde);}
+  #ok h2{color:var(--verde);font-size:1.1rem;margin:8px 0;}
+  #ok p{font-size:.85rem;color:#555;}
+  footer{font-size:.7rem;color:#999;text-align:center;margin-top:10px;}
+</style>
+</head>
+<body>
+<div class="card" id="form-card">
+  <h1>Avaliação dos Terapeutas — Gala Tríade 2026</h1>
+  <p class="sub">Tríade Espaço Terapêutico · Período 01/01/2026 a 30/11/2026 · resposta <b>anônima</b>.<br>
+  Notas de <b>1 a 5</b> (5 = Excelente) · use <b>N/A</b> se não tiver como avaliar um item.</p>
+  <div class="aviso">🔒 Sua avaliação é anônima: não pedimos seu nome nem o nome do seu filho. As respostas são usadas apenas para a gestão interna da clínica.</div>
+
+  <form id="f" novalidate>
+    <label class="lbl">Terapeuta avaliado <span style="font-weight:normal;font-size:.75rem;color:#777;">(nome completo)</span>
+      <input type="text" id="avaliado" placeholder="Ex.: Roberta" autocomplete="off">
+    </label>
+
+    <div class="bloco">
+      <div class="bloco-h">Bloco A — Cuidado e Competência no Atendimento <small>(peso 40%)</small></div>
+      <div class="crit"><div class="nome">A1. Domínio e segurança</div>
+        <div class="desc">O terapeuta demonstra domínio e segurança no atendimento: seu filho é atendido por alguém que sabe o que está fazendo.</div>
+        <div class="notas" data-c="a1"></div></div>
+      <div class="crit"><div class="nome">A2. Horários e plano</div>
+        <div class="desc">O terapeuta cumpre os horários e o plano de atendimento combinados (sessões, metas, devolutivas prometidas).</div>
+        <div class="notas" data-c="a2"></div></div>
+      <div class="crit"><div class="nome">A3. Explica o que faz</div>
+        <div class="desc">O terapeuta explica o que está fazendo e o progresso do seu filho de um jeito que você entende.</div>
+        <div class="notas" data-c="a3"></div></div>
+      <div class="crit"><div class="nome">A4. Informação confiável</div>
+        <div class="desc">As orientações e informações que o terapeuta passa batem com o que você observa do seu filho em casa.</div>
+        <div class="notas" data-c="a4"></div></div>
+      <div class="obs"><label>Observações do Bloco A <span style="font-weight:normal">(opcional)</span></label>
+        <textarea id="obsA" rows="2" placeholder="Conte algo que aconteceu no atendimento (opcional)..."></textarea></div>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-h">Bloco B — Trabalho em Equipe <small>(peso 30%)</small></div>
+      <div class="crit"><div class="nome">B1. Equipe integrada</div>
+        <div class="desc">O terapeuta conversa e trabalha junto com os outros profissionais que atendem seu filho.</div>
+        <div class="notas" data-c="b1"></div></div>
+      <div class="crit"><div class="nome">B2. Resolve com a clínica</div>
+        <div class="desc">Quando algo precisa ser resolvido com a clínica (horário, sala, orientação), o terapeuta ajuda a destravar em vez de deixar você sem resposta.</div>
+        <div class="notas" data-c="b2"></div></div>
+      <div class="crit"><div class="nome">B3. Presente nos encontros</div>
+        <div class="desc">O terapeuta participa das reuniões e encontros com a família e a equipe.</div>
+        <div class="notas" data-c="b3"></div></div>
+      <div class="crit"><div class="nome">B4. Ambiente tranquilo</div>
+        <div class="desc">O ambiente do atendimento é tranquilo e respeitoso para o seu filho.</div>
+        <div class="notas" data-c="b4"></div></div>
+      <div class="obs"><label>Observações do Bloco B <span style="font-weight:normal">(opcional)</span></label>
+        <textarea id="obsB" rows="2" placeholder="Conte algo que aconteceu no atendimento (opcional)..."></textarea></div>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-h">Bloco C — Acolhimento e Relacionamento <small>(peso 20%)</small></div>
+      <div class="crit"><div class="nome">C1. Respeita a privacidade</div>
+        <div class="desc">O terapeuta respeita a privacidade da sua família e não comenta seus assuntos com outras pessoas.</div>
+        <div class="notas" data-c="c1"></div></div>
+      <div class="crit"><div class="nome">C2. Vínculo com seu filho</div>
+        <div class="desc">Seu filho gosta do terapeuta e se sente bem-vindo nas sessões.</div>
+        <div class="notas" data-c="c2"></div></div>
+      <div class="crit"><div class="nome">C3. Segurança nos momentos difíceis</div>
+        <div class="desc">Nos momentos difíceis (birra, choro, crise), seu filho fica acolhido e seguro.</div>
+        <div class="notas" data-c="c3"></div></div>
+      <div class="crit"><div class="nome">C4. Conversa clara</div>
+        <div class="desc">O terapeuta conversa com você de forma clara e direta e ouve suas preocupações.</div>
+        <div class="notas" data-c="c4"></div></div>
+      <div class="obs"><label>Observações do Bloco C <span style="font-weight:normal">(opcional)</span></label>
+        <textarea id="obsC" rows="2" placeholder="Conte algo que aconteceu no atendimento (opcional)..."></textarea></div>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-h">Bloco D — Comprometimento <small>(peso 10%)</small></div>
+      <div class="crit"><div class="nome">D1. Assiduidade</div>
+        <div class="desc">O terapeuta falta pouco, chega no horário e avisa quando algo muda.</div>
+        <div class="notas" data-c="d1"></div></div>
+      <div class="crit"><div class="nome">D2. Segue as regras</div>
+        <div class="desc">O terapeuta segue as regras da clínica e orienta você sobre como funcionam as sessões.</div>
+        <div class="notas" data-c="d2"></div></div>
+      <div class="crit"><div class="nome">D3. Toma iniciativa</div>
+        <div class="desc">Quando há um problema (atraso, troca, imprevisto), o terapeuta toma a iniciativa de resolver e mantém você informado.</div>
+        <div class="notas" data-c="d3"></div></div>
+      <div class="crit"><div class="nome">D4. Postura profissional</div>
+        <div class="desc">O terapeuta tem uma postura educada, paciente e profissional, de exemplo para o seu filho.</div>
+        <div class="notas" data-c="d4"></div></div>
+      <div class="obs"><label>Observações do Bloco D <span style="font-weight:normal">(opcional)</span></label>
+        <textarea id="obsD" rows="2" placeholder="Conte algo que aconteceu no atendimento (opcional)..."></textarea></div>
+    </div>
+
+    <label class="lbl">Recado final <span style="font-weight:normal;font-size:.75rem;color:#777;">(opcional — algo que queira registrar sobre o atendimento)</span>
+      <textarea id="parecer" rows="3" placeholder="Comentários gerais sobre o atendimento do seu filho em 2026..."></textarea>
+    </label>
+
+    <p class="erro" id="erro">⚠ Preencha o nome do terapeuta avaliado e uma nota (1–5 ou N/A) em cada um dos 16 critérios.</p>
+    <button type="submit" id="btn">Enviar avaliação</button>
+  </form>
+</div>
+
+<div class="card" id="ok">
+  <div class="tick">✔</div>
+  <h2>Avaliação enviada!</h2>
+  <p>Obrigado. Sua resposta é anônima e foi registrada para a Gala Tríade 2026.</p>
+</div>
+
+<footer>Tríade Espaço Terapêutico · Gala Tríade: Melhores do Ano · Avaliação de Responsáveis — Exercício 2026</footer>
+
+<script>
+document.querySelectorAll('.notas').forEach(function(div){
+  var c = div.getAttribute('data-c'), html='';
+  for(var v=5;v>=1;v--){
+    html += '<label><input type="radio" name="'+c+'" value="'+v+'"><span>'+v+'</span></label>';
+  }
+  html += '<label class="na"><input type="radio" name="'+c+'" value="NA"><span>N/A</span></label>';
+  div.innerHTML = html;
+});
+
+var WEBHOOK = 'https://maestro.adapta.one/webhooks/generic/d72cb00f8e0076999d167bda18c8da52911afa7efff6262ab69f0c3498f2c8ba?secret=cf67428eb481a631f8830c245575caf2eae089044214c078a2eef36b60120499';
+
+// Pré-preenchimento do avaliado via URL: ?avaliado=Nome (campo fica travado)
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var nome = params.get('avaliado');
+  if(nome){
+    var campo = document.getElementById('avaliado');
+    campo.value = nome;
+    campo.readOnly = true;
+    campo.style.background = '#e8eef7';
+    campo.style.fontWeight = 'bold';
+    var aviso = document.createElement('p');
+    aviso.style.cssText = 'font-size:.78rem;color:#2F5496;margin-top:4px;';
+    aviso.textContent = '✔ Avaliação direcionada: você está avaliando ' + nome + '.';
+    campo.parentNode.appendChild(aviso);
+  }
+})();
+
+document.getElementById('f').addEventListener('submit', function(e){
+  e.preventDefault();
+  var avaliado = document.getElementById('avaliado').value.trim();
+  var campos = ['a1','a2','a3','a4','b1','b2','b3','b4','c1','c2','c3','c4','d1','d2','d3','d4'];
+  var notas = {};
+  campos.forEach(function(c){
+    var el = document.querySelector('input[name="'+c+'"]:checked');
+    notas[c] = el ? el.value : null;
+  });
+  var completo = avaliado && campos.every(function(c){return notas[c]!==null;});
+  if(!completo){ document.getElementById('erro').style.display='block'; return; }
+  document.getElementById('erro').style.display='none';
+  var btn = document.getElementById('btn');
+  btn.disabled = true; btn.textContent = 'Enviando...';
+
+  var payload = {
+    avaliado: avaliado,
+    obsA: document.getElementById('obsA').value.trim(),
+    obsB: document.getElementById('obsB').value.trim(),
+    obsC: document.getElementById('obsC').value.trim(),
+    obsD: document.getElementById('obsD').value.trim(),
+    parecer: document.getElementById('parecer').value.trim()
+  };
+  campos.forEach(function(c){ payload[c] = notas[c] === 'NA' ? 'NA' : Number(notas[c]); });
+
+  fetch(WEBHOOK, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(payload)
+  }).then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    document.getElementById('form-card').style.display='none';
+    document.getElementById('ok').style.display='block';
+  }).catch(function(err){
+    btn.disabled=false; btn.textContent='Enviar avaliação';
+    document.getElementById('erro').textContent='⚠ Falha no envio ('+err.message+'). Verifique a internet e tente de novo.';
+    document.getElementById('erro').style.display='block';
+  });
+});
+</script>
+</body>
+</html>
