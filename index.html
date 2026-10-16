@@ -199,10 +199,10 @@ document.getElementById('f').addEventListener('submit', function(e){
 
   fetch(WEBHOOK, {
     method:'POST',
-    headers:{'Content-Type':'application/json'},
+    mode:'no-cors',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
     body: JSON.stringify(payload)
-  }).then(function(r){
-    if(!r.ok) throw new Error('HTTP '+r.status);
+  }).then(function(){
     document.getElementById('form-card').style.display='none';
     document.getElementById('ok').style.display='block';
   }).catch(function(err){
